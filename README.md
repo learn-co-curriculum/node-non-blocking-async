@@ -10,7 +10,7 @@ This lesson will cover the async code on the example of `fs`.
 
 ## Objectives
 
-1.Illustrate async code wtih fs read method
+1. Illustrate async code wtih fs read method
 1. Illustrate async code wtih fs write method
 
 ## Async Way of Thinking
@@ -49,7 +49,7 @@ This misunderstanding of async code leads to many bugs especially for developers
 
 ## fs.readFile
 
-So to read a file  in the synchronous mode, we would use this method:
+So to read a file in the synchronous mode, we would use this method:
 
 ```js
 var content = fs.readFileSync(filename, options)
@@ -84,7 +84,7 @@ fs.readFile('README.md', 'utf-8', function(error, content) {
 console.log('I CAN DO SOMETHING ELSE WHILE WAITING!')
 ```
 
-You might wonder what would be the output of our async code? It's shown below. You can observer that while the app was waiting on the file system task (reading) it processed "I CAN DO SOMETHING ELSE WHILE WAITING!" console log. It could have done anything else! Typically a Node.js web server will be processing and handling multiple requests from clients at the same time while waiting for some input/output operation to finish.
+You might wonder what would be the output of our async code? It's shown below. You can observe that while the app was waiting on the file system task (reading), it processed the "I CAN DO SOMETHING ELSE WHILE WAITING!" console log. Typically a Node.js web server will be processing and handling multiple requests from clients at the same time while waiting for some input/output operation to finish.
 
 ```
 Start reading file
@@ -144,7 +144,7 @@ I ALSO can do something else while waiting!
 Finish writing file
 ```
 
-Note: We don't recommend using `throw error` as your error handling strategy (as you might see in some examples online), because it will automatically exit your application (akin to a crash). A better way to output a user-friendly error message (e.g., a `console.error()` or 500 Internal Server Error page) and exit gracefully. You can achieve it by bubbling up the error higher up the chain of callbacks until it reaches the place where you have the code to output your user-friendly message.
+Note: We don't recommend using `throw error` as your error handling strategy (as you might see in some examples online), because it will automatically exit your application (similar to a crash). A better way is to output a user-friendly error message (e.g., a `console.error()` or 500 Internal Server Error page) and exit gracefully. You can achieve it by bubbling the error higher up the chain of callbacks until it reaches the place where you have the code to output your user-friendly message.
 
 ## Resources
 
